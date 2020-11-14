@@ -1,0 +1,24 @@
+body {
+    text-align: center;
+    margin: 150px;
+}
+
+h1 {
+    font-size: 100px;
+}
+
+p {
+    font-size: 30px;
+}
+
+.nav-item-wrapper {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+}
+.nav-item-wrapper {
+  text-align: center;
+  font-size: 30px;
+}
