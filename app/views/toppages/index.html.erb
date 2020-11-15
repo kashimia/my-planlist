@@ -3,6 +3,9 @@
     <head>
          <meta charset="utf-8">
     </head>
+    <% if logged_in? %>
+    <p>ログイン完了ユーザ: <%= current_user.name %></p>
+    <% else %>
     <body>
         <h1>目標達成アプリ</h1>
         <p>目標を普通に決めても結局やる気が出ないですよね..<br>
@@ -10,6 +13,7 @@
             これはゲーム感覚でモチベが続く目標達成アプリです。</p>
          <div class="nav-item-wrapper">    
            <div class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></div>
-           <div class="nav-item"><a href="#" class="nav-link">ログイン</a></div>
+           <div class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></div>
     </body>
+    <% end %>
 </html>

@@ -1,16 +1,10 @@
+<div class="nav-item pull-right"><%= link_to 'Logout', logout_path, method: :delete %></div>
+<h1>ユーザー進行状況</h1>
 <div class="row">
-  <aside class="col-sm-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title"><%= @user.name %></h3>
-      </div>
-    </div>
-  </aside>
-  <div class="col-sm-8">
+  <div class="col-md">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">Microposts</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">進行中のクエスト</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">クエスト</a></li>
     </ul>
-  </div>
+  </div>  
 </div>
