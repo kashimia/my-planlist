@@ -1,14 +1,12 @@
-body {
-    text-align: center;
-    margin: 150px;
-}
 
 h1 {
     font-size: 100px;
+    text-align:center;
 }
 
 p {
     font-size: 30px;
+    text-align:center;
 }
 
 .nav-item-wrapper {

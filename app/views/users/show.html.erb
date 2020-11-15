@@ -1,10 +1,11 @@
-<div class="nav-item pull-right"><%= link_to 'Logout', logout_path, method: :delete %></div>
 <h1>ユーザー進行状況</h1>
+    
 <div class="row">
   <div class="col-md">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">進行中のクエスト</a></li>
+       <li class="nav-item"><a href="<%= user_path(@user) %>">進行中のクエスト  <span class="badge badge-secondary"><%= @count_quests %><%= render 'quests/quests', quests: @quests %></span></a></li>
       <li class="nav-item"><a href="#" class="nav-link">クエスト</a></li>
     </ul>
   </div>  
 </div>
+
