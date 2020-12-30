@@ -2,6 +2,10 @@ class QuestsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:destroy]
   
+  def index
+    @flag = false
+  end  
+  
   def create
      @quest = current_user.quests.build(quest_params)
     if @quest.save

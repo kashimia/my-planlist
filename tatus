@@ -1,0 +1,80 @@
+[1mdiff --git a/app/controllers/quests_controller.rb b/app/controllers/quests_controller.rb[m
+[1mindex a980c8d..b4eb3b2 100644[m
+[1m--- a/app/controllers/quests_controller.rb[m
+[1m+++ b/app/controllers/quests_controller.rb[m
+[36m@@ -2,6 +2,10 @@[m [mclass QuestsController < ApplicationController[m
+   before_action :require_user_logged_in[m
+   before_action :correct_user, only: [:destroy][m
+   [m
+[32m+[m[32m  def index[m
+[32m+[m[32m    @flag = false[m
+[32m+[m[32m  end[m[41m  [m
+[32m+[m[41m  [m
+   def create[m
+      @quest = current_user.quests.build(quest_params)[m
+     if @quest.save[m
+[1mdiff --git a/app/views/quests/_quests.html.erb b/app/views/quests/_quests.html.erb[m
+[1mindex e7692b4..87c1e7d 100644[m
+[1m--- a/app/views/quests/_quests.html.erb[m
+[1m+++ b/app/views/quests/_quests.html.erb[m
+[36m@@ -17,4 +17,10 @@[m
+     </li>[m
+   <% end %>[m
+   <%= paginate quests %>[m
+[32m+[m[41m  [m
+[32m+[m[32m  <% if @flag == true then %>[m
+[32m+[m[32m  complete[m
+[32m+[m[32m  <% else %>[m
+[32m+[m[41m  [m
+[32m+[m[32m  <% end %>[m
+ </ul>[m
+\ No newline at end of file[m
+[1mdiff --git a/app/views/users/show.html.erb b/app/views/users/show.html.erb[m
+[1mindex 6152a30..fe8b8d6 100644[m
+[1m--- a/app/views/users/show.html.erb[m
+[1m+++ b/app/views/users/show.html.erb[m
+[36m@@ -3,8 +3,7 @@[m
+ <div class="row">[m
+   <div class="col-md">[m
+     <ul class="nav nav-tabs nav-justified mb-3">[m
+[31m-       <li class="nav-item"><a href="<%= user_path(@user) %>">進行中のクエスト  <span class="badge badge-secondary"><%= @count_quests %><%= render 'quests/quests', quests: @quests %></span></a></li>[m
+[31m-      <li class="nav-item"><a href="#" class="nav-link">クエスト</a></li>[m
+[32m+[m[32m       <li class="nav-item"><a href="<%= user_path(@user) %>">クエスト  <span class="badge badge-secondary"><%= @count_quests %><%= render 'quests/quests', quests: @quests %></span></a></li>[m
+     </ul>[m
+   </div>  [m
+ </div>[m
+[1mdiff --git a/config/routes.rb b/config/routes.rb[m
+[1mindex 75d6642..c4bb407 100644[m
+[1m--- a/config/routes.rb[m
+[1m+++ b/config/routes.rb[m
+[36m@@ -8,5 +8,5 @@[m [mRails.application.routes.draw do[m
+    get 'signup', to: 'users#new'[m
+    resources :users, only: [:index, :show, :new, :create][m
+    [m
+[31m-   resources :quests, only: [:create, :destroy][m
+[32m+[m[32m   resources :quests, only: [:index, :create, :destroy][m
+ end[m
+[1mdiff --git a/db/migrate/20201115075337_create_quests.rb b/db/migrate/20201115075337_create_quests.rb[m
+[1mindex bf908ef..79aa0a7 100644[m
+[1m--- a/db/migrate/20201115075337_create_quests.rb[m
+[1m+++ b/db/migrate/20201115075337_create_quests.rb[m
+[36m@@ -2,7 +2,6 @@[m [mclass CreateQuests < ActiveRecord::Migration[5.2][m
+   def change[m
+     create_table :quests do |t|[m
+       t.string :content[m
+[31m-      t.string :complete[m
+       t.references :user, foreign_key: true[m
+ [m
+       t.timestamps[m
+[1mdiff --git a/db/schema.rb b/db/schema.rb[m
+[1mindex 0259126..5471ea0 100644[m
+[1m--- a/db/schema.rb[m
+[1m+++ b/db/schema.rb[m
+[36m@@ -14,7 +14,6 @@[m [mActiveRecord::Schema.define(version: 2020_11_15_075337) do[m
+ [m
+   create_table "quests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|[m
+     t.string "content"[m
+[31m-    t.string "complete"[m
+     t.bigint "user_id"[m
+     t.datetime "created_at", null: false[m
+     t.datetime "updated_at", null: false[m
